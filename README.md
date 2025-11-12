@@ -2,6 +2,14 @@
 
 A comprehensive, modular Streamlit-based dashboard for Zerodha KiteConnect API integration, providing real-time portfolio management, arbitrage opportunities, cash-futures strategies, and historical analytics.
 
+
+
+<img width="1505" height="802" alt="Screenshot 2025-11-12 at 9 13 01 PM" src="https://github.com/user-attachments/assets/1b095a6f-4df0-4c9b-abf7-3cb6a7208de5" />
+<img width="1512" height="802" alt="Screenshot 2025-11-12 at 9 13 12 PM" src="https://github.com/user-attachments/assets/ed66b5fe-6010-42d3-ba03-faeba5fda5ca" />
+<img width="1510" height="814" alt="Screenshot 2025-11-12 at 9 13 41 PM" src="https://github.com/user-attachments/assets/81d614d3-d15f-493a-a249-cfead7cd6aba" />
+<img width="1509" height="796" alt="Screenshot 2025-11-12 at 9 13 56 PM" src="https://github.com/user-attachments/assets/3752a64b-51b6-4eae-b974-c89e93bd17f5" />
+<img width="1509" height="802" alt="Screenshot 2025-11-12 at 9 14 53 PM" src="https://github.com/user-attachments/assets/67951c39-da4a-4e77-8fb4-938e73f758d3" />
+
 ## 🎯 Project Overview
 
 This project is a full-featured algorithmic trading dashboard that connects to Zerodha's KiteConnect API to provide:
