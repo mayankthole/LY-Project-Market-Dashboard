@@ -1,0 +1,10 @@
+# Ignore all folders
+*/
+
+# But include root-level Python and txt files
+!*.py
+!*.txt
+!requirements.txt
+
+# Don’t ignore the .gitignore itself
+!.gitignore
