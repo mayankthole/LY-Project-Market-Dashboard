@@ -9,6 +9,10 @@ A comprehensive, modular Streamlit-based dashboard for Zerodha KiteConnect API i
 <img width="1510" height="814" alt="Screenshot 2025-11-12 at 9 13 41 PM" src="https://github.com/user-attachments/assets/81d614d3-d15f-493a-a249-cfead7cd6aba" />
 <img width="1509" height="796" alt="Screenshot 2025-11-12 at 9 13 56 PM" src="https://github.com/user-attachments/assets/3752a64b-51b6-4eae-b974-c89e93bd17f5" />
 <img width="1509" height="802" alt="Screenshot 2025-11-12 at 9 14 53 PM" src="https://github.com/user-attachments/assets/67951c39-da4a-4e77-8fb4-938e73f758d3" />
+<img width="1510" height="806" alt="Screenshot 2025-11-12 at 9 17 10 PM" src="https://github.com/user-attachments/assets/8aa08015-6da6-4336-9385-229343224065" />
+<img width="1507" height="802" alt="Screenshot 2025-11-12 at 9 16 41 PM" src="https://github.com/user-attachments/assets/873717a2-354e-467a-ab21-3d6831c53634" />
+<img width="1512" height="811" alt="Screenshot 2025-11-12 at 9 15 06 PM" src="https://github.com/user-attachments/assets/79b72350-9f6f-491d-b4c3-991cac8a0251" />
+
 
 ## 🎯 Project Overview
 
