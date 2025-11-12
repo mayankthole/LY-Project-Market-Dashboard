@@ -1,0 +1,95 @@
+Details of Project Group: C2 Algorithmic Trading Engine
+
+Sr. No | Name of Student | Roll No.     | Contact Number | E-mail Address           | Signature
+1      | Mayank Thole    | 16010122312  | 9422233559     | mayank.thole@somaiya.edu | Mayank Thole
+2      | Khush Jain      | 16010122306  | 7208313583     | khush.bj@somaiya.edu     | Khush Jain
+3      | Raghav Garg     | 16010122319  | 7977080236     | raghav.garg@somaiya.edu  | Raghav Garg
+
+
+Title of the Project: C2 Algorithmic Trading Engine (Zerodha Dashboard MVP)
+
+
+Executive Summary
+We built a simple, persistent stock market dashboard (MVP) using Streamlit and Zerodha API. The app reads credentials from a .env file, fetches portfolio and market data, and presents actionable insights across eight tabs. The design prioritizes reliability, speed, and clarity over complexity.
+
+
+Problem Statement (focused)
+Manual trading is slow, emotional, and limited in coverage. Traders need a reliable way to view portfolio status, live prices, and market insights in one place without complex setups.
+
+Scope (aligned to MVP)
+- Broker: Zerodha (KiteConnect)
+- Exchanges: NSE/BSE equities (read-only analytics; no auto-trading in MVP)
+- Delivery: Streamlit dashboard that runs continuously and auto-refreshes
+- Config: .env-based credentials (no Google Sheets)
+
+
+What We Delivered
+- Streamlit dashboard with 8 tabs: Holdings, Positions, Orders, Account, Analytics, Market Analysis, Live Prices, Market Data
+- Zerodha integration using .env: ZERODHA_API_KEY, ZERODHA_API_SECRET, ZERODHA_ACCESS_TOKEN
+- Portfolio: holdings, positions, orders, margins, profile
+- Live Prices: expanded watchlist (>80 tickers) with sector filter, top gainers/losers
+- Correct change calculation from previous close
+- Order Volume (today-only) hourly bar chart
+- Analytics: SMA, RSI, MACD; sector exposure; correlation matrix; performance simulation
+- Market Analysis: historical candles + indicators
+- Auto-refresh via st.rerun; removed infinite loops; robust error handling
+- Clean UI: standard tabs, simplified sidebar; removed custom navigation
+- Log suppression for clean terminal output
+
+
+Architecture & Tech Stack
+- Python, Streamlit, Pandas, NumPy, Plotly (PX/GO)
+- kiteconnect (Zerodha), python-dotenv, pytz
+- Single-file app: simple_dashboard.py; credentials via .env
+
+
+Setup (for evaluators)
+1) Create .env with:
+   ZERODHA_API_KEY=...
+   ZERODHA_API_SECRET=...
+   ZERODHA_ACCESS_TOKEN=...
+2) Install deps: pip install -r requirements.txt
+3) Run: streamlit run simple_dashboard.py
+
+
+Work Completed as of July 15
+- Literature review and problem definition
+- Decided MVP scope and tech stack
+- Basic Streamlit scaffold and .env-based config
+
+Progress After July 15 (Current)
+- Integrated Zerodha API; portfolio + live market data
+- Added tabs, indicators, sector analysis, and clean UI
+- Implemented auto-refresh and error/log handling
+
+
+Timeline (condensed and aligned)
+- July (2nd half): Research, scope, .env setup, Streamlit scaffold — COMPLETED
+- August (1st half): Architecture, Zerodha account/setup — COMPLETED
+- August (2nd half): Dashboard skeleton, data structures — COMPLETED
+- September (1st half): Zerodha data integration, indicators, portfolio views — COMPLETED
+- September (2nd half): Analytics pages, order chart (today-only) — COMPLETED
+- October (1st half): UI polish, live prices expansion, stability & logging — COMPLETED
+- October (2nd half): Optional future: backtesting, execution wiring — PLANNED
+- November (1st half): Testing, docs, presentation — PLANNED
+
+
+Future Work (beyond MVP)
+- Backtesting framework and strategy evaluation
+- Broker-agnostic layer (Dhan/Angel One)
+- Execution engine with safety checks (paper/live)
+- Alerting, notifications, and basic automations
+
+
+Conclusion
+We delivered a focused Zerodha dashboard MVP that is simple to run, continuously updates, and provides practical insights. It avoids unnecessary complexity (no Sheets, no JS navigation) and uses a clean, extensible codebase suited for the next phases (backtesting and execution).
+
+
+Remark of Guide: ________________________________________________________________
+
+
+Name and Signature of Guide: __________________________   Name and Signature of Co-Guide: __________________________
+
+Dr. Manish Potey Sir
+
+

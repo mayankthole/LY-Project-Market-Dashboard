@@ -1,0 +1,66 @@
+Activity 6 Report (October 1)
+
+Details of Project Group:
+
+Sr. No | Name of Student | Roll No.     | Contact Number | E-mail Address           | Signature
+1      | Mayank Thole    | 16010122312  | 9422233559     | mayank.thole@somaiya.edu | Mayank Thole
+2      | Khush Jain      | 16010122306  | 7208313583     | khush.bj@somaiya.edu     | Khush Jain
+3      | Raghav Garg     | 16010122319  | 7977080236     | raghav.garg@somaiya.edu  | Raghav Garg
+
+
+Title of the Project:
+C2 Algorithmic Trading Engine — Zerodha Dashboard MVP
+
+
+Implementation of Functional Component/Module
+
+What was implemented/refined by October 1
+- Navigation Simplification
+  • Removed custom header/sidebar navigation; rely on standard Streamlit tabs for reliability
+  • Eliminated session-state/JS tab-switch hacks
+
+- Sidebar Cleanup
+  • Removed Quick Stats and Account Info from sidebar to avoid scope issues for `kite`
+  • Kept essential controls only: auto-refresh, last updated time, market status/timings, tips
+
+- Live Prices & Market Data
+  • Dedicated tabs for Live Prices and Market Data with expanded watchlist and sector filtering
+  • Price change corrected to use previous close; clear gainers/losers sections
+
+- Orders Visualization
+  • Today-only order volume bar chart grouped by hour to simplify intraday view
+
+- Stability & Logging
+  • Replaced infinite loops with `st.rerun()`-based refresh
+  • Removed caching on unhashable Kite client; handled pandas dtype edge cases
+  • Added `.streamlit/config.toml` and in-app logging suppression (error level) to keep terminal clean
+
+- UI Polish
+  • Clean page header, consistent metrics, and organized tab layout
+  • Small copy tweaks and removal of redundant messages
+
+
+Current Working Modules (as of Oct 1)
+1) Zerodha Integration & Config (.env based)
+2) Portfolio/Orders/Margins/Profile fetchers with derived metrics
+3) Live Market Data (LTP, change%, gainers/losers, sector filter)
+4) Analytics (SMA/RSI/MACD, correlation, sector exposure)
+5) Market Analysis (historical candles with overlays)
+6) UI/Refresh/Error handling and logging controls
+
+
+Notes on Testing/Results
+- Dashboard runs continuously without blocking; refresh interval configurable
+- Terminal is quiet (warnings suppressed); user-facing errors shown inline when needed
+- Navigation is robust using built-in tabs; no misclick/JS timing issues
+- Live prices and watchlist scale well; sector filter improves discoverability
+- Order volume chart communicates intraday activity succinctly
+
+
+Remark of Guide: 
+________________________________________________________________________________
+
+
+Name and Signature of Guide: __________________________   Name and Signature of Co-Guide: __________________________
+
+

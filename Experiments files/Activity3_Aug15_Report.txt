@@ -1,0 +1,107 @@
+Activity 3 Report (August 15)
+
+Details of Project Group:
+
+Sr. No | Name of Student | Roll No.     | Contact Number | E-mail Address           | Signature
+1      | Mayank Thole    | 16010122312  | 9422233559     | mayank.thole@somaiya.edu | Mayank Thole
+2      | Khush Jain      | 16010122306  | 7208313583     | khush.bj@somaiya.edu     | Khush Jain
+3      | Raghav Garg     | 16010122319  | 7977080236     | raghav.garg@somaiya.edu  | Raghav Garg
+
+
+Title of the Project:
+C2 Algorithmic Trading Engine — Zerodha Dashboard MVP
+
+Objectives: List of objectives with details
+1) Build a simple, reliable stock market dashboard (Streamlit) integrated with Zerodha (KiteConnect).
+   - Read credentials from .env only; avoid Google Sheets and external dependencies.
+   - Keep the app running continuously with auto-refresh and graceful error handling.
+2) Provide core portfolio visibility and market insights.
+   - Holdings, positions, orders, margins, profile in one place.
+   - Live LTP for an expanded watchlist with sector filtering.
+   - Correct price change based on previous close; top gainers/losers view.
+3) Add basic analytics for decision support.
+   - Technical indicators (SMA, RSI, MACD) and historical candles.
+   - Sector exposure, correlation matrix, quick performance simulation.
+4) Deliver a clean, maintainable UX.
+   - Standard tabs only, simplified sidebar, log suppression for clean terminal.
+   - No custom JS navigation; minimal session state.
+
+Requirement analysis: requirement analysis document
+- Functional Requirements
+  • Load Zerodha credentials from .env and establish authenticated session.
+  • Fetch and display holdings, positions, orders, margins, and profile.
+  • Show live prices (LTP), top gainers/losers, sector-filtered watchlist.
+  • Display analytics (SMA/RSI/MACD), sector analysis, correlation, and simple simulations.
+  • Auto-refresh data at a configurable interval without blocking UI.
+
+- Non-Functional Requirements
+  • Reliability: Must continue running without manual intervention; recover from transient API errors.
+  • Performance: Snappy UI; avoid heavy blocking calls; no infinite loops.
+  • Usability: Clean tabs, minimal clutter; actionable summaries.
+  • Security: Do not log secrets; credentials only via .env.
+  • Maintainability: Single-file MVP with clear sections and comments where needed.
+
+- Constraints
+  • Market data and actions limited by Zerodha API rate limits and permissions.
+  • IST market timing windows determine availability of some live metrics.
+  • No trading (execution) in MVP; analytics/read-only focus.
+
+- Assumptions
+  • Valid Zerodha access token present in .env during evaluation.
+  • Internet connectivity is stable for API calls.
+
+Dataset : details of the dataset required for the application along with its sources
+- Live Market Data (Quotes/LTP)
+  • Source: Zerodha KiteConnect (quote/ltp endpoints)
+  • Use: Live watchlist, gainers/losers, sector views
+
+- Portfolio & Orders
+  • Source: Zerodha API (holdings, positions, orders, margins, profile)
+  • Use: Portfolio overview, P&L summaries, order volume (today-only)
+
+- Historical OHLCV
+  • Source: Zerodha historical API (where available) or local `instruments.csv` for mappings
+  • Use: Candlestick charts, SMA/RSI/MACD calculations
+
+- Instruments Metadata
+  • Source: `instruments.csv` (bundled) and/or Zerodha master dump
+  • Use: Symbol-display mapping, sector grouping (static mapping where needed)
+
+Methodology /  Algorithm: Methodology suggested for the application with proper justification
+- System Architecture (MVP)
+  • UI Layer: Streamlit app (`simple_dashboard.py`) structured into 8 tabs
+  • Data Access Layer: KiteConnect client, helper functions for portfolio and quotes
+  • Config: `.env` via `python-dotenv`
+  • Visualization: Plotly (PX/GO) for charts and analytics
+
+- Data Flow
+  1) Load secrets from `.env` and initialize KiteConnect with access token
+  2) Fetch portfolio (holdings, positions, orders, margins, profile)
+  3) Fetch quotes/LTP for watchlist and compute changes from previous close
+  4) Optionally fetch historical OHLC for selected symbols to compute indicators
+  5) Render tab-wise views; schedule periodic `st.rerun()` for auto-refresh
+
+- Algorithms / Computations
+  • Technical Indicators: SMA, RSI, MACD computed from OHLC time series
+  • Price Change: `((LTP - PrevClose) / PrevClose) * 100`, ensures correctness
+  • Order Volume Today: Group orders by hour for current trading day; bar chart
+  • Risk/Analytics: Sector allocation, correlation matrix, simple return simulation
+
+- Reliability Practices
+  • Removed infinite loops; use `st.rerun()` after `sleep` for refresh
+  • Defensive `try/except` with user-friendly messages; removed noisy logs
+  • Avoided caching unhashable objects (no `@st.cache_data` on Kite client)
+
+- Justification
+  • Streamlit enables rapid delivery and reliable, persistent dashboards
+  • Zerodha API provides sufficient data for read-only insights in MVP
+  • Simple architecture reduces operational overhead and failure points
+
+
+Remark of Guide: 
+________________________________________________________________________________
+
+
+Name and Signature of Guide: __________________________   Name and Signature of Co-Guide: __________________________
+
+

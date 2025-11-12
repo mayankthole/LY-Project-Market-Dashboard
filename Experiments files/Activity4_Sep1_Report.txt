@@ -1,0 +1,109 @@
+Activity 4 Report (September 1)
+
+Details of Project Group:
+
+Sr. No | Name of Student | Roll No.     | Contact Number | E-mail Address           | Signature
+1      | Mayank Thole    | 16010122312  | 9422233559     | mayank.thole@somaiya.edu | Mayank Thole
+2      | Khush Jain      | 16010122306  | 7208313583     | khush.bj@somaiya.edu     | Khush Jain
+3      | Raghav Garg     | 16010122319  | 7977080236     | raghav.garg@somaiya.edu  | Raghav Garg
+
+
+Title of the Project:
+C2 Algorithmic Trading Engine — Zerodha Dashboard MVP
+
+
+Architecture/Design of System
+
+Architectural Diagram (textual)
+  .env  ->  Config Loader  ->  KiteConnect Client
+                          \\->  Data Fetchers (portfolio, orders, quotes, historical)
+                           \\->  Processing (indicators, change%, aggregations)
+                           \\->  Streamlit UI Tabs (Holdings, Positions, Orders, Account, Analytics, Market Analysis, Live Prices, Market Data)
+                           \\->  Auto-Refresh & Error Handling
+
+Flow of system
+  1) Load secrets from .env and initialize Zerodha KiteConnect with access token
+  2) Fetch portfolio data: holdings, positions, orders, margins, profile
+  3) Fetch market data: LTP/quotes for expanded watchlist; previous close for change%
+  4) Optionally fetch historical OHLCV for selected symbols
+  5) Compute indicators (SMA, RSI, MACD), sector exposure, correlation matrix
+  6) Render data per-tab using Streamlit and Plotly; show gainers/losers
+  7) Schedule periodic st.rerun for continuous updates; show friendly errors
+
+Identification of Use cases / Use Diagram (textual)
+  UC-1 View Portfolio: User opens dashboard to see holdings, positions, P&L, margins
+  UC-2 Monitor Live Prices: User watches LTP, top movers, sector-filtered watchlist
+  UC-3 Analyze Symbols: User opens Analytics/Market Analysis for indicators and charts
+  UC-4 Track Orders: User reviews order history and today’s order volume bar chart
+  UC-5 Configure Refresh: User adjusts auto-refresh interval from sidebar controls
+  UC-6 Troubleshoot: User sees human-readable errors without terminal noise
+
+
+Proposed Functional Components/Modules details
+
+Module-1: Data Access Layer (Zerodha Integration)
+  - Initializes KiteConnect client using .env values
+  - Functions: get_holdings, get_positions, get_orders, get_margins, get_profile, get_quotes/ltp, get_historical
+  - Handles API exceptions and rate-limit aware retries (basic)
+
+Module-2: Processing & Analytics
+  - Computes change% from previous close, derives market value and P&L
+  - Technical Indicators: SMA, RSI, MACD using historical OHLCV
+  - Aggregations: sector exposure, correlation matrix, order volume by hour
+
+Module-3: UI & Visualization (Streamlit + Plotly)
+  - Eight-tab layout; clean header; simplified sidebar controls
+  - Interactive tables and charts (candles, bars, lines, matrices)
+  - Top gainers/losers, watchlist with sector filter
+
+Module-4: Refresh, State & Error Handling
+  - Auto-refresh with st.rerun; no blocking infinite loops
+  - Graceful exceptions with informative messages
+  - Log suppression to keep terminal clean
+
+
+Provide the detailed understanding of the topic with mathematical / logical background
+
+Key computations
+  - Price Change (%):  change_pct = ((LTP - PrevClose) / PrevClose) * 100
+
+  - Simple Moving Average (SMA):  SMA_n(t) = (1/n) * Σ_{i=0..n-1} Price(t - i)
+
+  - Relative Strength Index (RSI):
+      RS = Avg(Gain, n) / Avg(Loss, n)
+      RSI = 100 - (100 / (1 + RS))
+
+  - MACD:
+      MACD = EMA_fast(12) - EMA_slow(26)
+      Signal = EMA(MACD, 9)
+
+  - Correlation Matrix:
+      For a returns matrix R (rows=time, cols=symbols), Corr = cov(R) normalized to [-1, 1]
+
+  - Order Volume Today:
+      Group orders by local trading date = today (IST), then by hour; plot bar chart of counts
+
+Data tables/figures (rendered in app)
+  - Holdings/Positions tables with derived columns (market value, P&L, change%)
+  - Candlestick charts with SMA overlays, RSI and MACD subplots
+  - Sector allocation bar/pie, correlation heatmap, gainers/losers lists
+
+
+List the various functional Components
+  - Config Loader (.env)
+  - Zerodha Client (KiteConnect)
+  - Portfolio Fetchers (holdings, positions, orders, margins, profile)
+  - Market Data Fetchers (LTP/quotes, historical OHLCV)
+  - Processing & Indicators (SMA, RSI, MACD, change%, aggregations)
+  - UI Tabs (Holdings, Positions, Orders, Account, Analytics, Market Analysis, Live Prices, Market Data)
+  - Visualization (Plotly charts and Streamlit dataframes)
+  - Refresh & Error Handling (auto-refresh, messages, log suppression)
+
+
+Remark of Guide: 
+________________________________________________________________________________
+
+
+Name and Signature of Guide: __________________________   Name and Signature of Co-Guide: __________________________
+
+
