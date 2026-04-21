@@ -833,13 +833,8 @@ def main():
                     return 'background-color: #ffebee; color: #c62828;'
                 return ''
             
-            _live_cols = live_df[
-                ['symbol', 'exchange', 'last_price', 'change', 'change_pct', 'high', 'low', 'open', 'volume']
-            ].style
-            styled_df = (
-                _live_cols.map(color_code_change, subset=['change', 'change_pct'])
-                if hasattr(_live_cols, 'map')
-                else _live_cols.applymap(color_code_change, subset=['change', 'change_pct'])
+            styled_df = live_df[['symbol', 'exchange', 'last_price', 'change', 'change_pct', 'high', 'low', 'open', 'volume']].style.applymap(
+                color_code_change, subset=['change', 'change_pct']
             )
             
             st.dataframe(styled_df, use_container_width=True)
